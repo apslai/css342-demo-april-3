@@ -1,22 +1,56 @@
 #include <iostream>
 #include <math.h>
 #include <valarray>
+#include <pstl/glue_numeric_defs.h>
 
+void test();
 void is_power_of_two_loop(int num);
 void is_power_of_two_no_loop(int num);
 void isPrime(const int num);
 void reduceFraction(int numerator, int denominator);
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-int main() {
-    // TIP Press <shortcut actionId="RenameElement"/> when your caret is at the
-    // <b>lang</b> variable name to see how CLion can help you rename it.
+//class Fraction;
+//Fraction reduce(Fraction input);
 
+int main() {
+    test();
+}
+
+void test() {
+    /*
+    //Tests if a number is a power of two using a loop in the function
+    is_power_of_two_loop(-4); //Should be FAIL
+    is_power_of_two_loop(1); //Should be PASS
+    is_power_of_two_loop(2); //Should be PASS
+    is_power_of_two_loop(3); //Should be FAIL
+    is_power_of_two_loop(4); //Should be PASS
+    is_power_of_two_loop(5); //Should be FAIL
+    is_power_of_two_loop(64); //Should be PASS
+    is_power_of_two_loop(18); //Should be FAIL
+
+    std::cout << std::endl;
+
+    //Tests if a number is a power of two using no loop in the function
+    is_power_of_two_no_loop(-4); //Should be FAIL
+    is_power_of_two_no_loop(1); //Should be PASS
+    is_power_of_two_no_loop(2); //Should be PASS
+    is_power_of_two_no_loop(3); //Should be FAIL
+    is_power_of_two_no_loop(4); //Should be PASS
+    is_power_of_two_no_loop(5); //Should be FAIL
+    is_power_of_two_no_loop(64); //Should be PASS
+    is_power_of_two_no_loop(18); //Should be FAIL   NOT CORRECT
+
+    std::cout << std::endl;
+
+    //Tests if a number is prime
+    isPrime(-10); //Should be FAIL
     isPrime(1); //Should be FAIL
     isPrime(2); //Should be PASS
+    isPrime(3); //Should be PASS
     isPrime(4); //Should be FAIL
     isPrime(20); //Should be FAIL
     isPrime(15); //Should be FAIL
     isPrime(59); //Should be PASS
+    */
 
     reduceFraction(2, 4); //Should be PASS (1/2)
     reduceFraction(2, 3); //Should be FAIL
@@ -24,22 +58,18 @@ int main() {
     reduceFraction(12, 14); //Should be PASS (6/7)
     reduceFraction(12, 18); //Should be PASS (2/3)
 
-    is_power_of_two_no_loop(1); //Should be PASS
-    is_power_of_two_no_loop(2); //Should be PASS
-    is_power_of_two_no_loop(3); //Should be FAIL
-    is_power_of_two_no_loop(4); //Should be PASS
-    is_power_of_two_no_loop(5); //Should be FAIL
-    is_power_of_two_no_loop(64); //Should be PASS
-    is_power_of_two_no_loop(18); //Should be FAIL
-
-
-
-    return 0;
 }
 
 void is_power_of_two_loop(int num) {
-
-    std::cout << "FAIL" << std::endl;
+    while (num != 1) {
+        if (num % 2 == 0) {
+            num = num / 2;
+        } else {
+            std::cout << "FAIL" << std::endl;
+            return;
+        }
+    }
+    std::cout << "PASS" << std::endl;
 }
 
 void is_power_of_two_no_loop(int num) {
@@ -48,7 +78,12 @@ void is_power_of_two_no_loop(int num) {
     } else if (num == 1) {
         std::cout << "PASS" << std::endl;
     } else if (num % 2 == 0) {
-        std::cout << "PASS" << std::endl;
+        int sqrt_num = sqrt(num);
+        if (sqrt_num % 2 == 0) {
+            std::cout << "PASS" << std::endl;
+        } else {
+            std::cout << "FAIL" << std::endl;
+        }
     } else {
         std::cout << "FAIL" << std::endl;
     }
@@ -62,7 +97,7 @@ void isPrime(const int num) {
     } else if (num % 2 == 0) {
         std::cout << "FAIL" << std::endl;
     } else {
-        for (int i = 3; i <= sqrt(num); i += 2) {
+        for (int i = 3; i <= sqrt(num); i += 2) { //Used the "tab" fill on and CLion filled in the rest of the code
             if (num % i == 0) {
                 std::cout << "FAIL" << std::endl;
                 return;
@@ -72,6 +107,7 @@ void isPrime(const int num) {
     }
 }
 
+//Reduce fraction to the smallest fraction
 void reduceFraction(int numerator, int denominator) {
     int prevNum = numerator;
     int prevDen = denominator;
@@ -89,9 +125,3 @@ void reduceFraction(int numerator, int denominator) {
         std::cout << "FAIL " << numerator << "/" << denominator << std::endl;
     }
 }
-
-
-// TIP See CLion help at <a
-// href="https://www.jetbrains.com/help/clion/">jetbrains.com/help/clion/</a>.
-//  Also, you can try interactive lessons for CLion by selecting
-//  'Help | Learn IDE Features' from the main menu.
