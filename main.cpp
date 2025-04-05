@@ -16,7 +16,7 @@ int main() {
 }
 
 void test() {
-    /*
+
     //Tests if a number is a power of two using a loop in the function
     is_power_of_two_loop(-4); //Should be FAIL
     is_power_of_two_loop(1); //Should be PASS
@@ -50,8 +50,10 @@ void test() {
     isPrime(20); //Should be FAIL
     isPrime(15); //Should be FAIL
     isPrime(59); //Should be PASS
-    */
 
+    std::cout << std::endl;
+
+    //Reduces a fraction if possible
     reduceFraction(2, 4); //Should be PASS (1/2)
     reduceFraction(2, 3); //Should be FAIL
     reduceFraction(3, 2); //Should be FAIL
@@ -59,7 +61,7 @@ void test() {
     reduceFraction(12, 18); //Should be PASS (2/3)
 
 }
-
+//Function that checks if a number is a power of 2 (completed in class)
 void is_power_of_two_loop(int num) {
     while (num != 1) {
         if (num % 2 == 0) {
